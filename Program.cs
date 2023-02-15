@@ -1,19 +1,24 @@
-﻿/*Задача 64: Задайте значение N. Напишите программу, которая выведет все
-натуральные числа в промежутке от N до 1. Выполнить с помощью рекурсии.
-N = 5 -> "5, 4, 3, 2, 1"
-N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
-*/
+// Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. 
+// Даны два неотрицательных числа m и n.
+// m = 2, n = 3 -> A(m,n) = 9
 
+int m = InputNumbers("Введите m: "); //введение
+int n = InputNumbers("Введите n: "); // введение
 
-Console.WriteLine("Введите натуральное число больше 1:");
-int number = int.Parse(Console.ReadLine());
+int fun = Ack(m, n); // Объявление
 
-void NumberCounter (int number)
+Console.Write($"Функция Аккермана = {fun} "); // Вывод
+
+int Ack(int m, int n) // Запуск 
 {
-    if (number < 0) Console.Write($"{number} не натуральное число");
-    if (number == 0) return;
-    Console.Write(number + "  " );
-    NumberCounter (number - 1);
+  if (m == 0) return n + 1;
+  else if (n == 0) return Ack(m - 1, 1);
+  else return Ack(m - 1, Ack(m, n - 1));
 }
 
-NumberCounter(number);
+int InputNumbers(string input) 
+{
+  Console.Write(input);
+  int output = Convert.ToInt32(Console.ReadLine());
+  return output;
+}
